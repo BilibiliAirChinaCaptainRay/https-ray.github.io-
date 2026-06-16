@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header><a href="/"><h1>{{ site.title }}</h1></a></header>
+  <main>
+    <h2>{{ page.title }}</h2>
+    <p>Plugins for {{ page.title }} ({{ page.country_code }})</p>
+
+    <section class="plugins-list">
+      {% assign code = page.country_code %}
+      {% assign matches = site.plugins | where: "country", code %}
+      {% if matches.size == 0 %}
+        <p>No plugins for this country yet.</p>
+      {% else %}
+        {% for p in matches %}
+          <article class="plugin-card">
+            <h3><a href="{{ p.url }}">{{ p.title }}</a></h3>
+            <p>{{ p.short_description }}</p>
+            <p><strong>Version:</strong> {{ p.version }} &nbsp; <strong>Size:</strong> {{ p.size }}</p>
+            <p>
+              {% for d in p.downloads %}
+                <a class="download" href="{{ d.url }}" target="_blank" rel="noopener">{{ d.label }}</a>
+              {% endfor %}
+            </p>
+          </article>
+        {% endfor %}
+      {% endif %}
+    </section>
+  </main>
+  <footer><a href="/">Back to countries</a></footer>
+</body>
+</html>

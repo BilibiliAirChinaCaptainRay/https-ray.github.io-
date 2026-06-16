@@ -5,4 +5,8 @@ url: ""
 collections:
   plugins:
     output: true
+    permalink: /plugins/:slug/
+  countries:
+    output: true
+    permalink: /countries/:slug/
 paginate: 10

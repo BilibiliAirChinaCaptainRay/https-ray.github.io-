@@ -9,21 +9,17 @@
 <body>
   <header><h1>{{ site.title }}</h1></header>
   <main>
-    <section id="plugins">
-      {% for p in site.plugins %}
-      <article class="plugin">
-        <h2><a href="{{ p.url }}">{{ p.title }}</a></h2>
-        <p>{{ p.short_description }}</p>
-        <p><strong>Version:</strong> {{ p.version }} &nbsp; <strong>Simulator:</strong> {{ p.simulator }} &nbsp; <strong>Size:</strong> {{ p.size }}</p>
-        <p>
-          {% for d in p.downloads %}
-            <a class="download" href="{{ d.url }}" target="_blank" rel="noopener">{{ d.label }}</a>
-          {% endfor %}
-        </p>
-      </article>
+    <h2>Countries</h2>
+    <ul class="country-list">
+      {% for c in site.countries %}
+        {% assign code = c.country_code | downcase %}
+        {% assign count = site.plugins | where: "country", c.country_code | size %}
+        <li>
+          <a href="{{ c.url }}">{{ c.title }} — {{ count }} plugin{% if count > 1 %}s{% endif %}</a>
+        </li>
       {% endfor %}
-    </section>
+    </ul>
   </main>
-  <footer>Hosted on GitHub Pages · Satellite imagery not included; users must provide their own API keys</footer>
+  <footer>Hosted on GitHub Pages</footer>
 </body>
 </html>

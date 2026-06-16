@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ site.title }}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header><h1>{{ site.title }}</h1></header>
+  <main>
+    <section id="plugins">
+      {% for p in site.plugins %}
+      <article class="plugin">
+        <h2><a href="{{ p.url }}">{{ p.title }}</a></h2>
+        <p>{{ p.short_description }}</p>
+        <p><strong>Version:</strong> {{ p.version }} &nbsp; <strong>Simulator:</strong> {{ p.simulator }} &nbsp; <strong>Size:</strong> {{ p.size }}</p>
+        <p>
+          {% for d in p.downloads %}
+            <a class="download" href="{{ d.url }}" target="_blank" rel="noopener">{{ d.label }}</a>
+          {% endfor %}
+        </p>
+      </article>
+      {% endfor %}
+    </section>
+  </main>
+  <footer>Hosted on GitHub Pages · Satellite imagery not included; users must provide their own API keys</footer>
+</body>
+</html>

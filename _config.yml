@@ -1,0 +1,8 @@
+title: My Plugins Library
+description: A collection of freeware plugins and addons
+baseurl: ""
+url: ""
+collections:
+  plugins:
+    output: true
+paginate: 10
